@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Negative-Index Metamaterial: A 34-Second Anatomy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='38' fill='none' stroke='%23B97848' stroke-width='10'/></svg>" />
+<meta name="description" content="Interactive 3D schematic explainer of wire and split-ring response, idealized negative refraction, and separated phase versus energy flow." />
+</head>
+<body>
+<div id="app">
+  <canvas id="scene" aria-label="3D schematic animation of a wire and split-ring metamaterial slab"></canvas>
+  <div id="fallback" hidden>
+    <h1>Static fallback</h1>
+    <p>WebGL is unavailable in this browser. The explanation still holds: wires along the electric field give an effective electric response, split rings threaded by magnetic flux give a magnetic resonance, and only in an idealized overlapping band does the slab-scale model show negative refraction. Energy flows into the slab in gold. Phase fronts progress in the opposite direction in the low-loss idealization.</p>
+  </div>
+
+  <header class="hud top">
+    <div>
+      <p class="eyebrow">SCHEMATIC ELECTROMAGNETIC RESPONSE. NOT A FULL-WAVE SIMULATION.</p>
+      <h1>Inside a negative-index metamaterial</h1>
+    </div>
+    <div class="badge" id="scaleBadge">SLAB SCALE</div>
+  </header>
+
+  <section class="caption" aria-live="polite">
+    <p class="shot" id="shotLabel">SHOT 1 / 5</p>
+    <h2 id="captionTitle">A slab built from repeated unit cells</h2>
+    <p id="captionBody"></p>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <aside class="legend" aria-label="Visual legend">
+    <div><span class="sw cyan"></span>Electric field / wire current</div>
+    <div><span class="sw violet"></span>Magnetic field / ring current</div>
+    <div><span class="sw gold"></span>&#10216;S&#10217; time-averaged energy flow</div>
+    <div><span class="sw white"></span>k: phase propagation (dashed)</div>
+  </aside>
+
+  <section class="chartWrap" id="chartWrap" hidden>
+    <h3>Schematic response; not measured</h3>
+    <canvas id="chart" width="520" height="300"></canvas>
+    <p>Normalized frequency. Shaded region: idealized double-negative operating band, Re(&epsilon;<sub>eff</sub>) &lt; 0 and Re(&mu;<sub>eff</sub>) &lt; 0.</p>
+  </section>
+
+  <div class="compare" id="compare" hidden>
+    <strong>Energy forward into slab.</strong>
+    <span>Phase progression opposite.</span>
+  </div>
+
+  <footer class="controls">
+    <button id="playBtn" aria-label="Play or pause">&#10074;&#10074;</button>
+    <button id="replayBtn" aria-label="Replay from start">&#8635;</button>
+    <label class="scrubLabel" for="scrub">Timeline, 34 seconds, shots 1 to 5
+      <input id="scrub" type="range" min="0" max="34" step="0.001" value="0" aria-label="Timeline scrubber" />
+    </label>
+    <output id="timeOut" for="scrub">t = 0.000 s / frame 0</output>
+    <button id="muteBtn" aria-label="Mute or unmute audio">Sound: off</button>
+    <button id="motionBtn" aria-label="Toggle reduced motion inspection mode">Reduced motion: off</button>
+    <button id="fsBtn" aria-label="Toggle fullscreen">Fullscreen</button>
+  </footer>
+  <p class="audioNote">Audio starts only after Play. Audible tones are a score, not the microwave frequency. Electromagnetic cycle slowed for illustration.</p>
+</div>
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
